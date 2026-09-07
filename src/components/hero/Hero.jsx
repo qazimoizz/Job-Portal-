@@ -1,7 +1,18 @@
-import { Search, MapPin, Briefcase, ChevronRight, TrendingUp } from 'lucide-react';
+import { useState } from 'react';
+import { Search, MapPin, ChevronRight, TrendingUp } from 'lucide-react';
 import './hero.css';
 
-const Hero = () => {
+const Hero = ({ onSearch }) => {
+  const [keyword, setKeyword] = useState('');
+  const [location, setLocation] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (onSearch) {
+      onSearch({ keyword, location });
+    }
+  };
+
   return (
     <section className="hero-wrapper pt-12 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto text-center">
@@ -22,15 +33,17 @@ const Hero = () => {
           Explore thousands of job openings with top companies, competitive salaries, and remote-friendly opportunities.
         </p>
 
-        {/* Search Bar Container */}
-        <div className="mt-10 hero-search-box rounded-2xl p-2.5 sm:p-3 max-w-4xl mx-auto text-left">
-          <form className="flex flex-col md:flex-row items-center gap-2" onSubmit={(e) => e.preventDefault()}>
+        {/* Search Bar Form */}
+        <div className="mt-10 hero-search-box rounded-2xl p-2.5 sm:p-3 max-w-3xl mx-auto text-left">
+          <form className="flex flex-col md:flex-row items-center gap-2" onSubmit={handleSubmit}>
             
-            {/* Input 1: Job Title */}
+            {/* Input 1: Job Keyword */}
             <div className="search-input-group flex items-center gap-3 w-full px-3.5 py-2.5 rounded-xl border border-transparent">
               <Search className="text-slate-400 shrink-0" size={20} />
               <input 
                 type="text" 
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
                 placeholder="Job title, keywords, or company" 
                 className="w-full bg-transparent text-slate-800 placeholder-slate-400 focus:outline-none text-sm font-medium"
               />
@@ -43,23 +56,11 @@ const Hero = () => {
               <MapPin className="text-slate-400 shrink-0" size={20} />
               <input 
                 type="text" 
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
                 placeholder="City, state, or 'Remote'" 
                 className="w-full bg-transparent text-slate-800 placeholder-slate-400 focus:outline-none text-sm font-medium"
               />
-            </div>
-
-            <div className="hidden md:block w-px h-8 bg-slate-200"></div>
-
-            {/* Input 3: Category Select */}
-            <div className="search-input-group flex items-center gap-3 w-full px-3.5 py-2.5 rounded-xl border border-transparent">
-              <Briefcase className="text-slate-400 shrink-0" size={20} />
-              <select className="w-full bg-transparent text-slate-700 focus:outline-none text-sm font-medium cursor-pointer">
-                <option value="">All Categories</option>
-                <option value="tech">Software & Tech</option>
-                <option value="design">UI/UX & Design</option>
-                <option value="marketing">Marketing</option>
-                <option value="finance">Finance</option>
-              </select>
             </div>
 
             {/* Search Submit Button */}
@@ -71,16 +72,6 @@ const Hero = () => {
               <ChevronRight size={16} />
             </button>
           </form>
-        </div>
-
-        {/* Popular Keywords / Tags */}
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-500 font-medium">
-          <span className="font-semibold text-slate-700">Popular Searches:</span>
-          {['React Developer', 'Remote', 'UI/UX Designer', 'Node.js', 'Frontend'].map((tag, idx) => (
-            <span key={idx} className="bg-slate-200/60 hover:bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md cursor-pointer transition">
-              {tag}
-            </span>
-          ))}
         </div>
 
       </div>
