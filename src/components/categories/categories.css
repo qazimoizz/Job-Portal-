@@ -1,0 +1,29 @@
+/* Section Container Styling */
+.categories-container {
+  background-color: #ffffff;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Category Card Styling */
+.category-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-card:hover {
+  transform: translateY(-3px);
+  border-color: #3b82f6;
+  box-shadow: 0 12px 24px -10px rgba(37, 99, 235, 0.12);
+}
+
+/* Icon Container Animation */
+.category-icon-wrapper {
+  transition: all 0.25s ease;
+}
+
+.category-card:hover .category-icon-wrapper {
+  background-color: #2563eb;
+  color: #ffffff;
+}
