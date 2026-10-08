@@ -1,0 +1,27 @@
+/* Soft Hero Gradient Background */
+.hero-wrapper {
+  background: radial-gradient(circle at 50% 0%, rgba(239, 246, 255, 0.8) 0%, rgba(248, 250, 252, 0) 70%);
+}
+
+/* Hero Badge */
+.hero-badge {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+}
+
+/* Floating Search Box Shadow & Styling */
+.hero-search-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+}
+
+/* Custom Search Input Focus States */
+.search-input-group {
+  transition: all 0.2s ease;
+}
+
+.search-input-group:focus-within {
+  background-color: #f8fafc;
+}

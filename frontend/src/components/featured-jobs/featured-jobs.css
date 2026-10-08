@@ -1,0 +1,45 @@
+/* Container Background */
+.featured-jobs-container {
+  background-color: #f8fafc;
+}
+
+/* Job Card Styling */
+.job-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.job-card:hover {
+  transform: translateY(-2px);
+  border-color: #3b82f6;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+}
+
+/* Company Badge Icon Shadow */
+.company-badge {
+  border: 1px solid #f1f5f9;
+}
+
+/* Pill Tag Styling */
+.job-tag {
+  background-color: #f1f5f9;
+  color: #475569;
+  transition: all 0.2s ease;
+}
+
+.job-tag-type {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+/* Bookmark Active/Hover Animation */
+.bookmark-btn {
+  color: #94a3b8;
+  transition: all 0.2s ease;
+}
+
+.bookmark-btn:hover {
+  color: #ef4444;
+  background-color: #fef2f2;
+}
