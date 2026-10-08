@@ -1,12 +1,11 @@
-import { useState } from 'react';
-import { Search, MapPin, ChevronRight, TrendingUp } from 'lucide-react';
-import './hero.css';
+import React, { useState } from 'react';
+import { Search, MapPin } from 'lucide-react';
 
 const Hero = ({ onSearch }) => {
   const [keyword, setKeyword] = useState('');
   const [location, setLocation] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
     if (onSearch) {
       onSearch({ keyword, location });
@@ -14,68 +13,66 @@ const Hero = ({ onSearch }) => {
   };
 
   return (
-    <section className="hero-wrapper pt-12 pb-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto text-center">
+    <div className="bg-slate-50/50 py-12 sm:py-20 px-4">
+      <div className="max-w-4xl mx-auto text-center space-y-4 sm:space-y-6">
         
-        {/* Top Tag/Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold hero-badge mb-6 shadow-xs">
-          <TrendingUp size={14} />
-          <span>#1 Job Platform for Developers & Designers</span>
+        {/* Top Tagline Badge */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[11px] sm:text-xs font-semibold tracking-wide shadow-sm">
+          <span>📈</span> #1 Job Platform for Developers & Designers
         </div>
 
-        {/* Main Headline */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
-          Find Your Dream Job & <br className="hidden sm:inline" />
-          <span className="logo-gradient">Build Your Future</span>
+        {/* Main Heading */}
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 leading-tight tracking-tight">
+          Find Your <span className="text-blue-600">Dream Job</span> & <br className="hidden sm:inline" />
+          <span className="text-blue-600"> Build Your Future</span>
         </h1>
 
-        <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
+        {/* Subtitle */}
+        <p className="text-slate-500 text-xs sm:text-sm md:text-base max-w-2xl mx-auto font-medium px-2">
           Explore thousands of job openings with top companies, competitive salaries, and remote-friendly opportunities.
         </p>
 
-        {/* Search Bar Form */}
-        <div className="mt-10 hero-search-box rounded-2xl p-2.5 sm:p-3 max-w-3xl mx-auto text-left">
-          <form className="flex flex-col md:flex-row items-center gap-2" onSubmit={handleSubmit}>
-            
-            {/* Input 1: Job Keyword */}
-            <div className="search-input-group flex items-center gap-3 w-full px-3.5 py-2.5 rounded-xl border border-transparent">
-              <Search className="text-slate-400 shrink-0" size={20} />
-              <input 
-                type="text" 
-                value={keyword}
-                onChange={(e) => setKeyword(e.target.value)}
-                placeholder="Job title, keywords, or company" 
-                className="w-full bg-transparent text-slate-800 placeholder-slate-400 focus:outline-none text-sm font-medium"
-              />
-            </div>
+        {/* Responsive Search Bar Container */}
+        <form 
+          onSubmit={handleSearch}
+          className="bg-white p-2.5 rounded-2xl sm:rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-200/80 max-w-3xl mx-auto flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 mt-6 sm:mt-8"
+        >
+          {/* Keyword Input */}
+          <div className="flex items-center gap-3 px-3 py-2 flex-1 border-b sm:border-b-0 sm:border-r border-slate-100">
+            <Search className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 shrink-0" />
+            <input 
+              type="text" 
+              placeholder="Job title, keywords, or company"
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
+              className="w-full text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none bg-transparent"
+            />
+          </div>
 
-            <div className="hidden md:block w-px h-8 bg-slate-200"></div>
+          {/* Location Input */}
+          <div className="flex items-center gap-3 px-3 py-2 flex-1">
+            <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 shrink-0" />
+            <input 
+              type="text" 
+              placeholder="City, state, or 'Remote'"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              className="w-full text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none bg-transparent"
+            />
+          </div>
 
-            {/* Input 2: Location */}
-            <div className="search-input-group flex items-center gap-3 w-full px-3.5 py-2.5 rounded-xl border border-transparent">
-              <MapPin className="text-slate-400 shrink-0" size={20} />
-              <input 
-                type="text" 
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                placeholder="City, state, or 'Remote'" 
-                className="w-full bg-transparent text-slate-800 placeholder-slate-400 focus:outline-none text-sm font-medium"
-              />
-            </div>
-
-            {/* Search Submit Button */}
-            <button 
-              type="submit" 
-              className="btn-gradient text-white font-semibold px-7 py-3.5 rounded-xl text-sm w-full md:w-auto shrink-0 flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <span>Search</span>
-              <ChevronRight size={16} />
-            </button>
-          </form>
-        </div>
+          {/* Search Button */}
+          <button 
+            type="submit"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-md shadow-blue-600/20 shrink-0"
+          >
+            <span>Search</span>
+            <span className="text-xs">›</span>
+          </button>
+        </form>
 
       </div>
-    </section>
+    </div>
   );
 };
 
